@@ -1,62 +1,74 @@
+(function() {
+
 // device.js
 // =========
 // zhangshibing@baidu.com
 
 var WIN = window;
-var DOC = document;
 var LOC = WIN["location"];
-var REFERER = DOC["referrer"];
-var HIS = WIN.history;
 var NA = WIN.navigator;
-var UA = NA.userAgent;
-var IsTouch = "ontouchend" in WIN;
-var IsHasDeviceMotion = "ondevicemotion" in WIN;
-var IsAndroid = /Android|HTC/i.test(UA) || /Linux/i.test(WIN.navigator.platform + '');
-var IsIPad = !IsAndroid && /iPad/i.test(UA);
-var IsIPhone = !IsAndroid && /iPod|iPhone/i.test(UA);
-var IsIOS = IsIPad || IsIPhone;
-var IsWinPhone = /Windows Phone/i.test(UA);
-var IsWebapp = NA["standalone"];
-var IsXiaoMi = IsAndroid && /mi\s+/i.test(UA);
-var IsUC = /UCBrowser/i.test(UA);
-var IsWeixin = /MicroMessenger/i.test(UA);
-var IsWechat = IsWeixin;
-var IsBaiduBrowser = /baidubrowser/i.test(UA);
-var IsChrome = !!WIN["chrome"];
-var IsBaiduBox = /baiduboxapp/i.test(UA);
-var IsPC = !IsAndroid && !IsIOS && !IsWinPhone;
-var IsHTC = IsAndroid && /HTC\s+/i.test(UA);
-var IsBaiduWallet = /baiduwallet/i.test(UA);
+var UA = NA.userAgent.toLowerCase();
 
-var IsDebug = ~("" + LOC["port"]).indexOf("0");
+function test(needle) {
+  return needle.test(UA);
+}
+
+var IsTouch = "ontouchend" in WIN;
+var IsAndroid = test(/android|htc/) || /linux/i.test(NA.platform + "");
+var IsIPad = !IsAndroid && test(/ipad/);
+var IsIPhone = !IsAndroid && test(/ipod|iphone/);
+var IsIOS = IsIPad || IsIPhone;
+var IsWinPhone = test(/windows phone/);
+var IsWebapp = !!NA["standalone"];
+var IsXiaoMi = IsAndroid && test(/mi\s+/);
+var IsUC = test(/ucbrowser/);
+var IsWeixin = test(/micromessenger/);
+var IsBaiduBrowser = test(/baidubrowser/);
+var IsChrome = !!WIN["chrome"];
+var IsBaiduBox = test(/baiduboxapp/);
+var IsPC = !IsAndroid && !IsIOS && !IsWinPhone;
+var IsHTC = IsAndroid && test(/htc\s+/);
+var IsBaiduWallet = test(/baiduwallet/);
+
+var IsDebug = !!~("" + LOC["port"]).indexOf("0");
 
 
 var device = {
-	IsTouch: IsTouch,
-	IsAndroid: IsAndroid,
-	IsIPad: IsIPad,
-	IsIPhone: IsIPhone,
-	IsIOS: IsIOS,
-	IsWinPhone: IsWinPhone,
-	IsWebapp: IsWebapp,
-	IsXiaoMi: IsXiaoMi,
-	IsUC: IsUC,
-	IsWeixin: IsWeixin,
-	IsBaiduBox: IsBaiduBox,
-	IsBaiduBrowser: IsBaiduBrowser,
-	IsChrome: IsChrome,
-	IsPC: IsPC,
-	IsHTC: IsHTC,
-	IsBaiduWallet: IsBaiduWallet,
-	IsDebug: IsDebug
+  IsTouch: IsTouch,
+  IsAndroid: IsAndroid,
+  IsIPad: IsIPad,
+  IsIPhone: IsIPhone,
+  IsIOS: IsIOS,
+  IsWinPhone: IsWinPhone,
+  IsWebapp: IsWebapp,
+  IsXiaoMi: IsXiaoMi,
+  IsUC: IsUC,
+  IsWeixin: IsWeixin,
+  IsBaiduBox: IsBaiduBox,
+  IsBaiduBrowser: IsBaiduBrowser,
+  IsChrome: IsChrome,
+  IsPC: IsPC,
+  IsHTC: IsHTC,
+  IsBaiduWallet: IsBaiduWallet,
+  IsDebug: IsDebug
 };
 
-var elHTML = document.getElementsByTagName("html")[0];
+var documentElement = WIN.document.documentElement;
 for (var i in device) {
-	window[i] = device[i];
-	if (device[i]) {
-		elHTML.className += " " + i.replace("Is", "").toLowerCase();
-	}
+  if (device[i]) {
+    documentElement.className += " " + i.replace("Is", "").toLowerCase();
+  }
 }
 
-module.exports = device;
+
+if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+  define(function() {
+    return device;
+  });
+} else if (typeof module !== 'undefined' && module.exports) {
+  module.exports = device;
+} else {
+  window.device = device;
+}
+
+}).call(this);
