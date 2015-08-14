@@ -25,4 +25,4 @@
 
 ## demo
 
-[Demo](http://binnng.github.io/devie.js/demo.html)
+[Demo](http://binnng.github.io/device.js/demo.html)
