@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>device.js - binnng</title>
+	<script type="text/javascript" src="device.min.js"></script>
+	<meta  name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			padding: 1.4rem;
+		}
+		li{
+			list-style: none;
+		}
+		h1{
+			margin-bottom: 2rem;
+		}
+
+		ul{
+			font-size: 1.4rem;
+		}
+		li{
+			line-height: 1.5;
+		}
+
+		li b.false{
+			color: red;
+		}
+
+		li b.true{
+			color: #4faa33;
+		}
+
+	</style>
+</head>
+<body>
+
+<h1>DEVICE.JS</h1>
+
+<ul>
+</ul>
+
+
+<script type="text/javascript">
+
+	var html = [];
+	
+	for (var i in window.device) {
+		html.push("<li>" + i + ": <b class=" + window.device[i] + ">" + window.device[i] + "</b></li>");
+	}
+
+
+	var $ = document.querySelector.bind(document);
+	var ul = $("ul");
+
+	ul.innerHTML = html.join("");
+
+</script>
+	
+</body>
+</html>
