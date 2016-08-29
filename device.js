@@ -34,23 +34,23 @@ var IsDebug = !!~("" + LOC["port"]).indexOf("0");
 
 
 var device = {
-  IsTouch: IsTouch,
-  IsAndroid: IsAndroid,
-  IsIPad: IsIPad,
-  IsIPhone: IsIPhone,
-  IsIOS: IsIOS,
-  IsWinPhone: IsWinPhone,
-  IsWebapp: IsWebapp,
-  IsXiaoMi: IsXiaoMi,
-  IsUC: IsUC,
-  IsWeixin: IsWeixin,
-  IsBaiduBox: IsBaiduBox,
-  IsBaiduBrowser: IsBaiduBrowser,
-  IsChrome: IsChrome,
-  IsPC: IsPC,
-  IsHTC: IsHTC,
-  IsBaiduWallet: IsBaiduWallet,
-  IsDebug: IsDebug
+  isTouch: IsTouch,
+  isAndroid: IsAndroid,
+  isIPad: IsIPad,
+  isIPhone: IsIPhone,
+  isIOS: IsIOS,
+  isWinPhone: IsWinPhone,
+  isWebapp: IsWebapp,
+  isXiaoMi: IsXiaoMi,
+  isUC: IsUC,
+  isWeixin: IsWeixin,
+  isBaiduBox: IsBaiduBox,
+  isBaiduBrowser: IsBaiduBrowser,
+  isChrome: IsChrome,
+  isPC: IsPC,
+  isHTC: IsHTC,
+  isBaiduWallet: IsBaiduWallet,
+  isDebug: IsDebug
 };
 
 var documentElement = WIN.document.documentElement;

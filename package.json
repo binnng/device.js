@@ -1,0 +1,23 @@
+{
+  "name": "m-device",
+  "version": "1.0.1",
+  "description": "mobile detect js library",
+  "main": "device.js",
+  "scripts": {
+    "build": "uglifyjs device.js -m -c -o device.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binnng/device.js.git"
+  },
+  "keywords": [
+    "device",
+    "mobile"
+  ],
+  "author": "binnng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binnng/device.js/issues"
+  },
+  "homepage": "https://github.com/binnng/device.js#readme"
+}
